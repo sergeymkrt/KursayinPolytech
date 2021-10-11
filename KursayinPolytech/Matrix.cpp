@@ -56,7 +56,12 @@ Matrix::Matrix(int m,int n){
 void Matrix::printMatrix(){
     for (int i = 0; i < M; i++) {
       for (int j = 0; j < N; j++) {
-        cout<<myMat[i][j] << " ";
+          if(myMat[i][j] % 10 > 0 && myMat[i][j] / 10 == 0){
+              cout<< " "<<myMat[i][j]<<" ";
+          }
+          else{
+              cout<<myMat[i][j] << " ";
+          }
       }
       cout << endl;
     }
