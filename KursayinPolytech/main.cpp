@@ -12,47 +12,50 @@
 #include <vector>
 #include <algorithm>
 #include "Matrix.hpp"
-#if defined(__APPLE__) && defined(__MACH__)
-#  include <GLUT/glut.h>
-#else
-#  include <GL/glut.h>
-#endif
+#include <curses.h>
+#include <unistd.h>
+
 
 using namespace std;
+
 
 int main(int argc, const char * argv[]) {
   
   system("clear");
+  
   cout<< "Hello, enter N and M :)";
   int m,n;
   cin>>m>>n;
+  system("clear");
   cout<<"Thanks , here is your matrix :)"<<endl;
   
   //creating, generating and printing the Matrix
   Matrix* myMat = new Matrix(m,n);
   
+  
   myMat->printMatrix();
   
+  
   cout<<"Want to sort every line of matrix? type: Y,N"<<endl;
-  string choice = "";
-  bool ok = true;
+  string choice1 = "";
+  bool ok1 = true;
   
   //Sorting matrix ( or not )
-  while(ok){
-    cin >> choice;
+  while(ok1){
+    cin >> choice1;
     
-    if(choice == "Y" || choice == "y"){
+    if(choice1 == "Y" || choice1 == "y"){
       
       cout<< " Okay , here is the sorted matrix"<<endl;
       myMat->sortMatrix();
       myMat->printMatrix();
-      ok = false;
+      ok1 = false;
       
     }
-    else if (choice == "N" || choice == "n"){
+    else if (choice1 == "N" || choice1 == "n"){
       
       cout<<"Ok";
-      ok = false;
+      ok1 = false;
     }
     else{
       cout<<"Error.. try again please"<<endl;
@@ -63,6 +66,19 @@ int main(int argc, const char * argv[]) {
   
   myMat->sortRowValues();
   myMat->printSumMap();
+
+ 
+  //move(1,1);
+  //printf("\033[%dLOLOLol%dm", 0, 0);
+  //cout<<" LOLLLL"<<endl;
+  
+  
+  string idk;
+  cout<<"Type something to continue"<<endl;
+  cin>>idk;
+  
+  
+  
   
   cout<<endl;
   cout<<"Here is the sorted matrix"<<endl;
@@ -71,6 +87,40 @@ int main(int argc, const char * argv[]) {
   myMat->sortRows();
   myMat->printMatrix();
   
+  
+  cout<<"Are you ready to enter the graphics mode? y/n"<<endl;
+  string ready;
+  cin>>ready;
+  
+  if (ready == "y" || ready == "Y") {
+    initscr();
+    int row,col;
+    getmaxyx(stdscr, row, col);
+    int firstRow,firstCol;
+    firstRow = 2;
+    int rowLength = myMat->N*3;
+    firstCol = (col/2)-rowLength-10;
+    
+    PrintMatrix mat;
+    
+    for (int i = 0; i < myMat->N; i++) {
+      mat.printRow(i, firstRow, firstCol, myMat);
+      firstRow++;
+    }
+    
+    firstRow = 2;
+    for (int i = 0; i< myMat->N; i++) {
+      mat.eraseRow(firstRow, firstCol, myMat);
+      firstRow++;
+    }
+  }
+  
+  else{
+    cout<<"Okay :)";
+  }
+  
+  getch();
+  endwin();
   
   cout<<endl;
   return 0;

@@ -12,6 +12,8 @@
 #include <map>
 #include <vector>
 #include <algorithm>
+#include <curses.h>
+#include <unistd.h>
 
 using namespace std;
 
@@ -20,7 +22,6 @@ bool sortByVal(const pair<int, int> &a,
 {
   return (a.second > b.second);
 }
-
 
 
 Matrix::Matrix(int m,int n){
@@ -39,7 +40,7 @@ Matrix::Matrix(int m,int n){
     for (int i = 0; i < m; i++)
     {
       for (int j = 0; j < n; j++) {
-        myMat[i][j] = (rand() % 70)+1;
+        myMat[i][j] = (rand() % 80)+10;
       }
     }
     M = m;
@@ -111,5 +112,36 @@ void Matrix::sortRows(){
     
     myMat = newMat->myMat;
 }
+
+void PrintMatrix::printRow(int n, int xOfFirst, int yOfFirst, Matrix* m){
+    int rowLength = m->N;
+    
+    move(xOfFirst,yOfFirst);
+    for (int i = 0 ; i < rowLength; i++) {
+        string s = to_string(m->myMat[n][i]);
+        int l = s.length();
+        char arr[l+2];
+        strcpy(arr, s.c_str());
+        arr[l] =' ';
+        arr[l+1] = ' ';
+        
+        printw(arr);
+        usleep(150000);
+        refresh();
+    }
+}
+void PrintMatrix::eraseRow(int xOfFirst, int yOfFirst, Matrix* m){
+    move(xOfFirst,yOfFirst);
+    for (int i = 0; i < m->N; i++) {
+        printw("    ");
+        usleep(150000);
+        refresh();
+    }
+}
+void PrintMatrix::moveRow(int xOfFirst, int yOfFirst, int xOfSecond, int yOfSecond,int n, Matrix* m){
+    eraseRow(xOfFirst,yOfFirst,m);
+    printRow(n, xOfSecond, yOfSecond, m);
+}
+
   
   

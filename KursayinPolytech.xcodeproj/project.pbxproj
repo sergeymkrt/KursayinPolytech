@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		113DC0E8271D7B410055C1B6 /* libcurses.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 113DC0E7271D7A080055C1B6 /* libcurses.tbd */; };
 		119BDDFA270784BB00F8FD0D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 119BDDF9270784BB00F8FD0D /* main.cpp */; };
-		119BDE0227078BB600F8FD0D /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119BDE0127078BB600F8FD0D /* OpenGL.framework */; platformFilter = maccatalyst; };
-		119BDE0427078BBE00F8FD0D /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119BDE0327078BBE00F8FD0D /* GLUT.framework */; };
 		11A2D40D270F8AA30026BAEF /* Matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11A2D40B270F8AA30026BAEF /* Matrix.cpp */; };
 /* End PBXBuildFile section */
 
@@ -26,10 +25,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		113DC0E7271D7A080055C1B6 /* libcurses.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurses.tbd; path = usr/lib/libcurses.tbd; sourceTree = SDKROOT; };
+		118974C927196281002AED20 /* libncurses.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libncurses.5.tbd; path = usr/lib/libncurses.5.tbd; sourceTree = SDKROOT; };
+		118974CA27196281002AED20 /* libncurses.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libncurses.tbd; path = usr/lib/libncurses.tbd; sourceTree = SDKROOT; };
+		118974CB27196281002AED20 /* libncurses.5.4.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libncurses.5.4.tbd; path = usr/lib/libncurses.5.4.tbd; sourceTree = SDKROOT; };
 		119BDDF6270784BB00F8FD0D /* KursayinPolytech */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = KursayinPolytech; sourceTree = BUILT_PRODUCTS_DIR; };
 		119BDDF9270784BB00F8FD0D /* main.cpp */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		119BDE0127078BB600F8FD0D /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		119BDE0327078BBE00F8FD0D /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		11A2D40B270F8AA30026BAEF /* Matrix.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix.cpp; sourceTree = "<group>"; };
 		11A2D40C270F8AA30026BAEF /* Matrix.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Matrix.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -39,8 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				119BDE0427078BBE00F8FD0D /* GLUT.framework in Frameworks */,
-				119BDE0227078BB600F8FD0D /* OpenGL.framework in Frameworks */,
+				113DC0E8271D7B410055C1B6 /* libcurses.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,8 +77,10 @@
 		119BDE0027078BB500F8FD0D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				119BDE0327078BBE00F8FD0D /* GLUT.framework */,
-				119BDE0127078BB600F8FD0D /* OpenGL.framework */,
+				113DC0E7271D7A080055C1B6 /* libcurses.tbd */,
+				118974CB27196281002AED20 /* libncurses.5.4.tbd */,
+				118974C927196281002AED20 /* libncurses.5.tbd */,
+				118974CA27196281002AED20 /* libncurses.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -264,6 +266,7 @@
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = ../../../../../Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/lib/libcurses.tbd;
 				GCC_NO_COMMON_BLOCKS = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos appletvsimulator appletvos";
@@ -276,6 +279,7 @@
 			buildSettings = {
 				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = ../../../../../Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/lib/libcurses.tbd;
 				GCC_NO_COMMON_BLOCKS = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos appletvsimulator appletvos";

@@ -28,9 +28,18 @@ public:
     void printSumMap();
     void sortRowValues();
     void sortMatrix();
-    int SumOfRow(int n);
-    void SetRow(Matrix* mat, int rowNum, int newMatRowNum);
     void sortRows();
+private:
+    void SetRow(Matrix* mat, int rowNum, int newMatRowNum);
+    int SumOfRow(int n);
+};
+
+class PrintMatrix{
+public:
+     void printRow(int n,int xOfFirst, int yOfFirst, Matrix* m);
+     void eraseRow(int xOfFirst, int yOfFirst, Matrix* m);
+     void moveRow(int xOfFirst, int yOfFirst, int xOfSecond, int yOfSecond,int n, Matrix* m);
 };
 
 #endif /* Matrix_hpp */
+
