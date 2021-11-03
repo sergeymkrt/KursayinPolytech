@@ -15,13 +15,12 @@
 #include <curses.h>
 #include <unistd.h>
 
-
 using namespace std;
-
 
 int main(int argc, const char * argv[]) {
   
   system("clear");
+  
   
   cout<< "Hello, enter N and M :)";
   int m,n;
@@ -31,7 +30,6 @@ int main(int argc, const char * argv[]) {
   
   //creating, generating and printing the Matrix
   Matrix* myMat = new Matrix(m,n);
-  
   
   myMat->printMatrix();
   
@@ -68,32 +66,15 @@ int main(int argc, const char * argv[]) {
   myMat->printSumMap();
 
  
-  //move(1,1);
-  //printf("\033[%dLOLOLol%dm", 0, 0);
-  //cout<<" LOLLLL"<<endl;
-  
-  
-  string idk;
-  cout<<"Type something to continue"<<endl;
-  cin>>idk;
-  
-  
-  
-  
-  cout<<endl;
-  cout<<"Here is the sorted matrix"<<endl;
-  
-  
-  myMat->sortRows();
-  myMat->printMatrix();
-  
   
   cout<<"Are you ready to enter the graphics mode? y/n"<<endl;
   string ready;
   cin>>ready;
   
   if (ready == "y" || ready == "Y") {
+    //Entering the graphics mode
     initscr();
+    
     int row,col;
     getmaxyx(stdscr, row, col);
     int firstRow,firstCol;
@@ -103,18 +84,21 @@ int main(int argc, const char * argv[]) {
     
     PrintMatrix mat;
     
+    //Printing the matrix
     for (int i = 0; i < myMat->N; i++) {
       mat.printRow(i, firstRow, firstCol, myMat);
       firstRow++;
     }
     
     firstRow = 2;
-    for (int i = 0; i< myMat->N; i++) {
-      mat.eraseRow(firstRow, firstCol, myMat);
-      firstRow++;
+    int secondCol = (col/2)-rowLength+10;
+    
+    //Moving the matrix
+    for (int i =0 ; i < myMat->rowValues.size(); i++) {
+      mat.moveRow(firstRow+myMat->rowValues[i].first, firstCol, firstRow+i, secondCol, myMat->rowValues[i].first, myMat);
+      usleep(300000);
     }
   }
-  
   else{
     cout<<"Okay :)";
   }
@@ -122,7 +106,7 @@ int main(int argc, const char * argv[]) {
   getch();
   endwin();
   
-  cout<<endl;
+  cout<<"Thank you for using me :)"<<endl;
   return 0;
 }
 

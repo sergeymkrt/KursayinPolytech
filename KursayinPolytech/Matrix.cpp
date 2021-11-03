@@ -48,10 +48,7 @@ Matrix::Matrix(int m,int n){
     
     for (int i = 0; i < M; i++) {
       rowValues.push_back(make_pair(i, SumOfRow(i)));
-      //rowValues[i] = SumOfRow(i);
     }
-    //printSumMap();
-    
 }
 
 void Matrix::printMatrix(){
@@ -101,9 +98,9 @@ void Matrix::SetRow(Matrix* mat, int rowNum, int newMatRowNum){
     }
 }
   
+//Sort ALL Matrix with rows
 void Matrix::sortRows(){
     Matrix* newMat = new Matrix(M,N);
-    //vector<int> rowIndexes;
     
     for (int i = 0; i<M; i++) {
       int sortedRowNum = rowValues[i].first;
@@ -113,6 +110,7 @@ void Matrix::sortRows(){
     myMat = newMat->myMat;
 }
 
+//Printing a row in the graphics mode
 void PrintMatrix::printRow(int n, int xOfFirst, int yOfFirst, Matrix* m){
     int rowLength = m->N;
     
@@ -130,6 +128,7 @@ void PrintMatrix::printRow(int n, int xOfFirst, int yOfFirst, Matrix* m){
         refresh();
     }
 }
+//Erasing a row in the console
 void PrintMatrix::eraseRow(int xOfFirst, int yOfFirst, Matrix* m){
     move(xOfFirst,yOfFirst);
     for (int i = 0; i < m->N; i++) {
@@ -138,10 +137,14 @@ void PrintMatrix::eraseRow(int xOfFirst, int yOfFirst, Matrix* m){
         refresh();
     }
 }
+
+//Moving a row to a new row and column
 void PrintMatrix::moveRow(int xOfFirst, int yOfFirst, int xOfSecond, int yOfSecond,int n, Matrix* m){
+    move(xOfFirst,yOfSecond);
     eraseRow(xOfFirst,yOfFirst,m);
     printRow(n, xOfSecond, yOfSecond, m);
 }
+
 
   
   
