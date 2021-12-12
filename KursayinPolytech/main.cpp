@@ -62,6 +62,8 @@ int main(int argc, const char * argv[]) {
   
   cout<<"And here is the sorted matrix with rows sorted \n"<<endl;
   
+  vector<pair<int,int>> notSortedRowValues = myMat->rowValues;
+  
   myMat->sortRowValues();
   myMat->printSumMap();
 
@@ -91,13 +93,38 @@ int main(int argc, const char * argv[]) {
     }
     
     firstRow = 2;
-    int secondCol = (col/2)-rowLength+10;
     
-    //Moving the matrix
-    for (int i =0 ; i < myMat->rowValues.size(); i++) {
-      mat.moveRow(firstRow+myMat->rowValues[i].first, firstCol, firstRow+i, secondCol, myMat->rowValues[i].first, myMat);
-      usleep(300000);
+    
+    int num = 0;
+    for (int i = 0; i < myMat->N; i++) {
+      int indexOfRow = myMat->rowValues[i].first;
+      if(indexOfRow == notSortedRowValues[i].first){
+        continue;
+      }
+      
+      int index;
+      for (int k = 0; k < notSortedRowValues.size(); k++) {
+        if(indexOfRow == notSortedRowValues[k].first){
+          index = k;
+          break;
+        }
+      }
+      
+      mat.moveRow(firstRow + index,firstCol, firstRow + index, firstCol + n*4, indexOfRow, myMat);
+      
+      int tempIndex = notSortedRowValues[indexOfRow].first;
+      pair<int,int> row = notSortedRowValues[index];
+      
+      mat.getMatrixLow(firstRow,firstCol, indexOfRow, i,index,notSortedRowValues, myMat);
+      
+      mat.moveRow(firstRow + index , firstCol + n*4,firstRow+i,firstCol,indexOfRow,myMat);
+      
+      
+      
+      notSortedRowValues.erase(notSortedRowValues.begin() + index);
+      notSortedRowValues.insert(notSortedRowValues.begin()+ i,row);     
     }
+    
   }
   else{
     cout<<"Okay :)";

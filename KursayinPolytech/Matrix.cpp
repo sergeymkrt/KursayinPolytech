@@ -128,6 +128,7 @@ void PrintMatrix::printRow(int n, int xOfFirst, int yOfFirst, Matrix* m){
         refresh();
     }
 }
+
 //Erasing a row in the console
 void PrintMatrix::eraseRow(int xOfFirst, int yOfFirst, Matrix* m){
     move(xOfFirst,yOfFirst);
@@ -143,6 +144,16 @@ void PrintMatrix::moveRow(int xOfFirst, int yOfFirst, int xOfSecond, int yOfSeco
     move(xOfFirst,yOfSecond);
     eraseRow(xOfFirst,yOfFirst,m);
     printRow(n, xOfSecond, yOfSecond, m);
+}
+
+
+
+void PrintMatrix::getMatrixLow(int xOfFirst, int yOfFirst, int n,int j,int index,vector<pair<int,int>> rows, Matrix* m){
+    int tempindex = index-1;
+    for (int i = index-1; i >=j; i--) {
+        moveRow(xOfFirst + tempindex,yOfFirst,xOfFirst+tempindex + 1,yOfFirst,rows[i].first,m);
+        tempindex--;
+    }
 }
 
 
